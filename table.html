@@ -1,0 +1,240 @@
+---
+title: Table
+layout: default
+---
+
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      table caption {
+        font-weight: bold;
+        text-align: left;
+      }
+
+      table.bar-chart {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table.bar-chart th,
+      table.bar-chart td {
+        border-width: 0;     /* No borders by default. */
+      }
+
+      /* Visually hide the header */
+      table.bar-chart thead th {
+        opacity: 0;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      /* Set a fixed width for the category column,
+        allowing the value column (containing the bars)
+        to flex to fit the remaining width. */
+      table.bar-chart thead .category {
+        width: 150px;
+      }
+
+
+      table.bar-chart tbody th,
+      table.bar-chart tbody td {
+
+        vertical-align: top;
+
+        /* Spacing between rows using a transparent border. */
+        border-bottom: 10px solid transparent;
+
+      }
+
+      table.bar-chart tbody th {
+        text-align: right;     /* Align right to associate text with the bars */
+        padding: 0 10px 0 0;   /* Spacing between text and the bars. */
+        font-weight: normal;
+        line-height: 36px;
+      }
+
+      table.bar-chart tbody td {
+        text-align: left;
+        padding: 0;
+      }
+
+      /* First row should have some extra space at the top to allow the
+         grid to show through. */
+      table.bar-chart tbody tr:first-child td,
+      table.bar-chart tbody tr:first-child th {
+        padding-top: 5px;
+      }
+
+      /* Bar element (empty) */
+      table.bar-chart tbody .bar {
+        display: inline-block;
+        height: 36px;
+        background-color: #2B8CC4;    /* GOVUK Blue */
+      }
+
+      /* Add a thin space after to avoid weird layout issues from having an
+        empty element. */
+      table.bar-chart .bar:after {
+        content: ' ';
+      }
+
+      /* Value element (contains value as text). */
+      table.bar-chart tbody .value {
+        display: inline-block;
+        padding-left: 5px;
+        line-height: 36px;
+        vertical-align: top;
+        box-sizing: border-box;
+      }
+
+      /* Values close to 100% */
+      table.bar-chart tbody .value.close-to-100 {
+        width: 100px; margin-left: -100px;      /* position inside the bar */
+        padding-left: 0; padding-right: 5px;    /* padding on the right not the left */
+        text-align: right;
+        color: white;
+      }
+
+      table.bar-chart tfoot .grid-labels {
+        padding-top: 0;
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+      }
+
+      table.bar-chart tfoot .label {
+        position: absolute;
+        width: 50px;
+      }
+
+      table.bar-chart .label-0 {
+        left: -25px;
+      }
+
+      table.bar-chart .label-10 {
+        left: calc(10% - 25px);
+      }
+
+      table.bar-chart .label-20 {
+        left: calc(20% - 25px);
+      }
+
+      table.bar-chart .label-30 {
+        left: calc(30% - 25px);
+      }
+
+      table.bar-chart .label-40 {
+        left: calc(40% - 25px);
+      }
+
+      table.bar-chart .label-50 {
+        left: calc(50% - 25px);
+      }
+
+      table.bar-chart .label-60 {
+        left: calc(60% - 25px);
+      }
+
+      table.bar-chart .label-70 {
+        left: calc(70% - 25px);
+      }
+
+      table.bar-chart .label-80 {
+        left: calc(80% - 25px);
+      }
+
+      table.bar-chart .label-90 {
+        left: calc(90% - 25px);
+      }
+
+      table.bar-chart .label-100 {
+        left: calc(100% - 25px);
+      }
+
+      @media (max-width: 500px) {
+
+        table.bar-chart .label-10,
+        table.bar-chart .label-30,
+        table.bar-chart .label-50,
+        table.bar-chart .label-70,
+        table.bar-chart .label-90 {
+          display: none;
+        }
+      }
+
+      /* Background grid - line every 10% */
+      table tbody td
+       {
+        background:
+          repeating-linear-gradient(
+            to right,
+            #e6e6e6,
+            #e6e6e6 1px,
+            transparent 1px,
+            transparent 10%
+          ),
+          linear-gradient(
+            to right,
+            transparent,
+            transparent calc(100% - 1px),
+            #e6e6e6 calc(100% - 1px),
+            #e6e6e6
+          )
+        ;
+      }
+
+    </style>
+
+    <table class="bar-chart">
+      <caption>Bar chart title</caption>
+      <thead>
+        <tr>
+          <th class="category">Category</th>
+          <th class="value">Value</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td class="grid-labels" aria-role="presentation">
+            <span class="label label-0">0</span>
+            <span class="label label-10">10</span>
+            <span class="label label-20">20</span>
+            <span class="label label-30">30</span>
+            <span class="label label-40">40</span>
+            <span class="label label-50">50</span>
+            <span class="label label-60">60</span>
+            <span class="label label-70">70</span>
+            <span class="label label-80">80</span>
+            <span class="label label-90">90</span>
+            <span class="label label-100">100</span>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <th>Category A</th>
+          <td><span class="bar" style="width:50%;"></span><span class="value">50%</span></td>
+        </tr>
+        <tr>
+          <th>Category B</th>
+          <td><span class="bar" style="width:1%;"></span><span class="value">1%</span></td>
+        </tr>
+        <tr>
+          <th>Category C</th>
+          <td><span class="bar" style="width:100%;"></span><span class="value close-to-100">100%</span></td>
+        </tr>
+        <tr>
+          <th>Category D</th>
+          <td><span class="bar" style="width:75%;"></span><span class="value">750%</span></td>
+        </tr>
+        <tr>
+          <th>Category E</th>
+          <td><span class="bar" style="width:25%;"></span><span class="value">25%</span></td>
+        </tr>
+
+      </tbody>
+    </table>
